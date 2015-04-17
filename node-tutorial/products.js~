@@ -1,0 +1,25 @@
+var findProducts = function(folderName){
+        var fs = require('fs');
+        var filesInFolder = fs.readFile(folderName);
+        var productNames = [];
+        filesInFolder.forEach(function(fileName){
+        var fileContent = fs.readFileSync('./files/products.csv' + fileName,"utf8");
+        var products = fileContent.split('\n');
+        products.forEach(function(product){
+        productNames.push(product);
+
+});
+});
+
+console.log(productNames);
+return productNames
+}
+module.exports = function(folderName){
+	this.productNames = function(cb){
+		var files = findProducts(folderName);
+		cb(null, files);
+	}
+
+}
+
+
